@@ -1,0 +1,22 @@
+*{font-size: 0px; color: white; }
+body{background-image:url(bg.png) ;}
+.hat_buttons {font-size: 15px; border: none;  background-color: gray;}
+.hat_buttons:hover { color: rgb(18, 218, 18); }
+#Hat { width: 70%; height: 35px; background-color: gray; margin-left: 15%; margin-top: 0%;  padding-top: 15px; display:block; }
+#main_ref { font-size: 15px; color:honeydew; float: left; width: 48%; padding-left: 2%;}
+.right_text {font-size: 15px; color:honeydew; float: left; width: 48%; padding-right: 2%; text-align: right;}
+#main_window { font-size: 15px; width: 53%; height: 880px; margin-left: 15%; padding: 10px 1%;  background-color:rgb(58, 58, 58); display:inline-block; overflow-x: hidden; overflow-y: auto; }
+#article_block {width: 15%; height: 900px; display:inline-block;}
+#article_button { height: 44px; background-color:rgb(105, 105, 105); display:block;overflow-x: hidden; overflow-y: auto; text-align: center;}
+#create_button {font-size: 15px; border: none;  background-color: rgb(105, 105, 105); margin-top: 13px;}
+#create_button:hover{color: rgb(18, 218, 18); }
+#article_list { height: 856px; background-color:gray; display:block;overflow-x: hidden; overflow-y: auto;}
+.login_textbox{ font-size: 15px; background-color: gray;}
+.view_buttons {font-size: 15px; border: none;  background-color: gray; margin-left: 3%;}
+.view_buttons:hover { color: rgb(18, 218, 18); }
+p{font-size: 15px;}
+h3{font-size: 18px; font-weight: bold;}
+h2{font-size: 20px; font-weight: bold;}
+h1{font-size: 25px; font-weight: bold;}
+code{font-size: 15; color : rgb(18, 218, 18);}
+strong{font-size: 15;}
