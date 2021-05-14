@@ -12,7 +12,7 @@
         </div>
             <div id = "main_window"> <?php
                 include("includes/connection.php");
-                if (isset($_POST['login']) || !isset($_COOKIE['location']))
+                if (isset($_POST['login']))
                 {
                     setcookie('lastname','');
                     setcookie('lastarticle', '');
@@ -28,7 +28,7 @@
                     header("Location: index.php");
                 }
                 else
-                if (isset($_POST['main_ref']))
+                if (isset($_POST['main_ref']) || !isset($_COOKIE['location']))
                 {
                     setcookie('lastname','');
                     setcookie('lastarticle', '');
@@ -49,14 +49,32 @@
                 {
                     if(!empty($_POST['username']) && !empty($_POST['password']))
                     {
-                        $result = $con->query("SELECT COUNT(*) FROM users WHERE username='".$_POST['username']."'");
-                        $table = $result->fetch(PDO::FETCH_ASSOC);
-                        if($table['COUNT(*)'] == 0)
+                        if(strlen($_POST['username']) >= 5 && strlen($_POST['username']) <= 25)
                         {
-                            $password = md5($_POST['password']);
-                            $result = $con->query("INSERT INTO users (username, password) VALUES ('".$_POST['username']."','".$password."')");
-                            setcookie("message","Вы успешно зарегестрированы");
-                            setcookie("location", "login_page");
+                            if(strlen($_POST['password']) >= 5 && strlen($_POST['password']) <= 15)
+                            {
+                                $result = $con->query("SELECT COUNT(*) FROM users WHERE username='".$_POST['username']."'");
+                                $table = $result->fetch(PDO::FETCH_ASSOC);
+                                if($table['COUNT(*)'] == 0)
+                                {
+                                    $password = md5($_POST['password']);
+                                    $result = $con->query("INSERT INTO users (username, password) VALUES ('".$_POST['username']."','".$password."')");
+                                    setcookie("message","Вы успешно зарегестрированы");
+                                    setcookie("location", "login_page");
+                                }
+                                else
+                                {
+                                    setcookie("message","Данный пользователь уже сушествует");
+                                }
+                            }
+                            else
+                            {
+                                setcookie("message","Пароль должен быть в пределах от 5 до 15 символов");
+                            }
+                        }
+                        else
+                        {
+                            setcookie("message","Имя пользователя должно быть в пределах от 5 до 25 символов");
                         }
                     }
                     else
@@ -101,7 +119,6 @@
                     else
                     {
                         setcookie('lastname',$_POST['name']);
-                        setcookie('lastarticle', $_POST['editor']);
                         setcookie('message','Проверьте заполненность полей');
                     }
                     header("Location: index.php");
@@ -209,7 +226,7 @@
                     echo "</textarea>";
                     if($_COOKIE["location"] == "update")
                     {
-                        echo "<br> <input type = 'submit' name = 'update_end' value = 'Обновить статью' class = 'login_textbox'>";
+                        echo "<br> <input type = 'submit' name = 'update_end' value = 'Изменить статью' class = 'login_textbox'>";
 
                     }
                     else
@@ -234,7 +251,7 @@
                     echo "<p>Автор:".$table['author'];
                     if(isset($_COOKIE["user"]))
                     {
-                    echo "<br> <input type = 'submit' name = 'update_article' value = 'Обновить статью' class = 'login_textbox'> <input type = 'submit' name = 'delete_article' value = 'Удалить статью' class = 'login_textbox'>";
+                    echo "<br> <input type = 'submit' name = 'update_article' value = 'Изменить статью' class = 'login_textbox'> <input type = 'submit' name = 'delete_article' value = 'Удалить статью' class = 'login_textbox'>";
                     }
                 }
                 else
@@ -283,6 +300,7 @@
     
     <script>
 	CKEDITOR.replace( 'editor' );
+    
     </script>
     </BODY>
 </HTML>

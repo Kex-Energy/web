@@ -14,9 +14,11 @@ body{background-image:url(bg.png) ;}
 .login_textbox{ font-size: 15px; background-color: gray;}
 .view_buttons {font-size: 15px; border: none;  background-color: gray; margin-left: 3%;}
 .view_buttons:hover { color: rgb(18, 218, 18); }
+a{font-size: inherit; color: rgb(18, 218, 18);}
 p{font-size: 15px;}
-h3{font-size: 18px; font-weight: bold;}
+h3{font-size: 25px; font-weight: bold;}
 h2{font-size: 20px; font-weight: bold;}
-h1{font-size: 25px; font-weight: bold;}
+h1{font-size: 18px; font-weight: bold;}
 code{font-size: 15; color : rgb(18, 218, 18);}
 strong{font-size: 15;}
+textarea{ color: black; }
